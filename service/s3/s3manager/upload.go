@@ -462,7 +462,7 @@ func (u *uploader) nextReader() (io.ReadSeeker, int, []byte, error) {
 		n, err := readFillBuf(r, part)
 		u.readerPos += int64(n)
 
-		return bytes.NewReader(part[0:n]), n, part, err
+		return bytes.NewReader(append([]byte(nil), part[0:n]...)), n, part, err
 	}
 }
 
